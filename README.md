@@ -6,4 +6,4 @@
 
 ### Challenge2 and Solution2
 * Solution of stop phenomenon of main processing<br>
-![Prj_Rj2](./Img/Prj_Rj1.jpg)
+![Prj_Rj2](./Img/Prj_Rj2.jpg)
