@@ -27,7 +27,14 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 <p align="center">
 <img src="./Img/RJ_Flow.jpg"><br>
-<strong>Fig.1) the design pattern of slide(wheel touch sensors</strong>
+<strong>Fig.1) the entire block diagram of the combination algorithm</strong>
 <p>
 
-**Fig.1)** shows flow chart of the combination algorithm. 
+**Fig.1)** shows the entire block diagram of the touch signal processing. 3 purple blocks with star shape are complemented to improve the performance of the proximity touch system (noise, response time, sensitivity). This combination algorithm (3 purple blocks) was mandatory, because the PCB was intolerant to noisy environment caused by signals with various frequencies and the proximity touch sensor was very small (Width: 57.4mm / Front Height: 3mm / Upper Height: 3.5mm). This tiny sensor had to recognize the 3D range (Width: 250mm, Height: 50mm, Depth: 10mm). Since our OEM did not approve changing our product's design to increase the physical area of a touch sensor, I had to overcome these limitations with software algorithms.
+
+<p align="center">
+<img src="./Img/RJ_Filter.jpg"><br>
+<strong>Fig.2) Touch signal(ADC) behavior according to filter algorithm</strong>
+<p>
+
+**Fig.2)** shows how a touch signal(ADC) change after applying filter and PreEmphasis algorithm. 
