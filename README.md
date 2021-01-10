@@ -37,7 +37,7 @@ When implementing a proximity function with a touch system, there were a lot of 
 <strong>Fig.2) Touch signal(ADC) behavior according to algorithms</strong>
 <p>
 
-**Fig.2)** shows how a touch signal(ADC) change after applying filter and PreEmphasis algorithm. In order to reduce the amount of fluctuation of the touch signal(ADC), I implemented the combination of IIR and Kalman filter with C language.
+**Fig.2)** shows how a touch signal(ADC) change after applying filter and PreEmphasis algorithm. If the amount of fluctuation of a noise exceeds the range (Threshold On ~ Threhosld Off), the touch system is going to bring about several malfunctions. In order to reduce the amount of fluctuation of the noise, I implemented the combination of IIR and Kalman filter with C language.
 
 >void IIR_FILTER(Xtype* prox)<br>
 {<br>
@@ -55,8 +55,14 @@ When implementing a proximity function with a touch system, there were a lot of 
 &nbsp;&nbsp;&nbsp;u32Old = u32FilteredVal;<br>
 }<br>
 
-u32Rest indicates the remainter after division. The remainter will be added in the next loop.
+u32Rest indicates the remainter after division. The remainter will be added in the next loop. The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
 
-The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
+In these filter algorithms, a user can increase and decreases the intensity of the combined filter by changing the **DENOMINATOR** value in IIR and **LOGIC__nenKALMAN_R_CONST**, **LOGIC__nenKALMAN_Q_CONST**, **LOGIC__nenKALMAN_I_CONST** in Kalman Filter. When applying this combination filter algorithm, the noise of the original touch signal is going to be alleviated. However, the entire response time of the filtered touch signal (ADC) is slowed. This is a side effect of filter algorithms. But I overcome this side effect by applying PreEmphasis algorithm.
 
-In this filter algorithm, a user can increases and decreases the intensity of this filter by changing the 'DENOMINATOR' value in IIR and 'LOGIC__nenKALMAN_R_CONST', 'LOGIC__nenKALMAN_Q_CONST', 'LOGIC__nenKALMAN_I_CONST'in Kalman Filter.
+
+
+### Result #1
+Improved the noise-immunity, the response time, and the sensitivity by 200%, by 40%, and by 30%
+respectively<br>
+
+---
