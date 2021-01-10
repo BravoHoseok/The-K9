@@ -34,7 +34,26 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 <p align="center">
 <img src="./Img/RJ_Filter.jpg"><br>
-<strong>Fig.2) Touch signal(ADC) behavior according to filter algorithm</strong>
+<strong>Fig.2) Touch signal(ADC) behavior according to algorithms</strong>
 <p>
 
-**Fig.2)** shows how a touch signal(ADC) change after applying filter and PreEmphasis algorithm. 
+**Fig.2)** shows how a touch signal(ADC) change after applying filter and PreEmphasis algorithm. In order to reduce the amount of fluctuation of the touch signal(ADC), I implemented the combination of IIR and Kalman filter with C language.
+
+>IIR Filter
+void IIR_FILTER(~* prox)
+{
+    //Calculation
+    //New = ((N-1)*Old + New)/N
+&nbsp;&nbsp;&nbsp;uint32_t u32CalTemp;
+&nbsp;&nbsp;&nbsp;u32CalTemp = u32Old * DENOMINATOR;//DENOMINATOR=8(changable)
+&nbsp;&nbsp;&nbsp;u32CalTemp -= u32Old;
+&nbsp;&nbsp;&nbsp;u32CalTemp += u32Rest;
+&nbsp;&nbsp;&nbsp;u32CalTemp += (uint32_t)GetPresentADCValue;
+&nbsp;&nbsp;&nbsp;     
+&nbsp;&nbsp;&nbsp;u32FilteredVal = u32CalTemp / DENOMINATOR;
+&nbsp;&nbsp;&nbsp;u32Rest = u32CalTemp % DENOMINATOR;
+&nbsp;&nbsp;&nbsp;SetPresentADCValue = u32FilteredVal;
+&nbsp;&nbsp;&nbsp;u32Old = u32FilteredVal; 
+}
+
+By changing the DENOMINATOR value, a user increases and decreases the intensity of IIR filter. In this program, u32Rest indicates the remainter after division. The remainter will be added in the next loop.
