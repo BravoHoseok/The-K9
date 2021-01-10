@@ -39,8 +39,7 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 **Fig.2)** shows how a touch signal(ADC) change after applying filter and PreEmphasis algorithm. In order to reduce the amount of fluctuation of the touch signal(ADC), I implemented the combination of IIR and Kalman filter with C language.
 
->IIR Filter<br>
-void IIR_FILTER(Xtype* prox)<br>
+>void IIR_FILTER(Xtype* prox)<br>
 {<br>
     //Calculation<br>
     //New = ((N-1)*Old + New)/N<br>
