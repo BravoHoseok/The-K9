@@ -55,4 +55,8 @@ When implementing a proximity function with a touch system, there were a lot of 
 &nbsp;&nbsp;&nbsp;u32Old = u32FilteredVal;<br>
 }<br>
 
-By changing the DENOMINATOR value, a user increases and decreases the intensity of IIR filter. In this program, u32Rest indicates the remainter after division. The remainter will be added in the next loop.
+u32Rest indicates the remainter after division. The remainter will be added in the next loop.
+
+The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
+
+In this filter algorithm, a user can increases and decreases the intensity of this filter by changing the 'DENOMINATOR' value in IIR and 'LOGIC__nenKALMAN_R_CONST', 'LOGIC__nenKALMAN_Q_CONST', 'LOGIC__nenKALMAN_I_CONST'in Kalman Filter.
