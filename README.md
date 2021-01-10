@@ -57,12 +57,11 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 u32Rest indicates the remainter after division. The remainter will be added in the next loop. The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
 
-In these filter algorithms, a user can increase and decreases the intensity of the combined filter by changing the **DENOMINATOR** value in IIR and **LOGIC__nenKALMAN_R_CONST**, **LOGIC__nenKALMAN_Q_CONST**, **LOGIC__nenKALMAN_I_CONST** in Kalman Filter. When applying this combination filter algorithm, the noise of the original touch signal is going to be alleviated. However, the entire response time of the filtered touch signal (ADC) is slowed. This is a side effect of filter algorithms. But I overcome this side effect by applying PreEmphasis algorithm.
+In these filter algorithms, a user can increase and decreases the intensity of the combined filter by changing the **DENOMINATOR** value in IIR and **LOGIC__nenKALMAN_R_CONST**, **LOGIC__nenKALMAN_Q_CONST**, **LOGIC__nenKALMAN_I_CONST** in Kalman Filter. When applying this combination filter algorithm, the noise of the original touch signal is going to be alleviated. However, the entire response time of the filtered touch signal (ADC) is slowed. This is a side effect of filter algorithms. But I overcome this side effect by applying 'PreEmphasis' algorithm.
 
+To implement PreEmphasis algorithm, you first need to define 3 region(Noise Region, Signal Rise, Valide Signal) by monitoring the fluctuation of the touch signal. And the, set a hysterisys range of three region as shown in **Fig.3**. 
 
-
-### Result #1
-Improved the noise-immunity, the response time, and the sensitivity by 200%, by 40%, and by 30%
-respectively<br>
-
----
+<p align="center">
+<img src="./Img/RJ_PreEmpha.jpg"><br>
+<strong>Fig.2) Hysterisys Table</strong>
+<p>
