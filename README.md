@@ -13,7 +13,6 @@
 ## 3. Challenging issues / Research and Solution / Result
 This section demonstrates what was challenging issues, how to research them, and how to solve them
 
----
 ### Challenge #1 - Improving the performance of a touch system by devising software algorithms
 When implementing a proximity function with a touch system, there were a lot of challenging issues. The technical design was fully changed from an infrared type to a touch system. In addition, Since the PCB (Printed Circuit Board) had limited physical space, it was difficult for our hardware team to alleviate the noise of touch signals by changing the PCB design. To solve this issue, I introduced new software algorithms, carefully addressing side effects, such as delayed response time, low touch sensitivity, functional problem in humid environments, and a lack of ROM size of the 8-bit microprocessor.
 
