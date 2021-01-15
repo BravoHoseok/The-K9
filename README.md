@@ -149,17 +149,17 @@ To control illumination LEDs independently and reduce the cost of a product, we 
 
 <p align="center">
 <img src="./Img/RJ_SWDim.jpg"><br>
-<strong>Fig.7) input PWM signal and Timer register value</strong>
+<strong>Fig.7) the entire block diagram of software dimming control</strong>
 <p>
 
-Fig.7) shows the entire block diagram of software dimming control algorithm. 
+**Fig.7)** shows the entire block diagram of software dimming control algorithm. 
 
 <p align="center">
 <img src="./Img/RJ_Tmr.jpg"><br>
 <strong>Fig.8) input PWM signal and Timer register value</strong>
 <p>
 
-Fig.8) shows how to calculate the frequency and duty value of a PWM signal by employing Timer and Interrupt. The interrupt signal will be made every rising and falling event, while the timer register value accumulates. Below simple pseudocode describes the method of gauging the frequency and duty values.
+**Fig.8)** shows how to calculate the frequency and duty value of a PWM signal by employing Timer and Interrupt. The interrupt signal will be made every rising and falling event, while the timer register value accumulates. Below simple pseudocode describes the method of gauging the frequency and duty values.
 
 > Positive_CNT = CNT1 @ falling edge interrupt event
 Negative_CNT = CNT2 @ rising edeg interrupt event
