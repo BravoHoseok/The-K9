@@ -152,7 +152,7 @@ To control illumination LEDs independently and reduce the cost of a product, we 
 <strong>Fig.7) the entire block diagram of software dimming control</strong>
 <p>
 
-**Fig.7)** shows the entire block diagram of software dimming control algorithm. 
+**Fig.7) ** shows the entire block diagram of the software dimming control algorithm. This function have to ensure that there are no blinking errors of output PWM signals, while the duty of input PWM signals change.
 
 <p align="center">
 <img src="./Img/RJ_Tmr.jpg"><br>
@@ -166,6 +166,11 @@ Negative_CNT = CNT2 @ rising edeg interrupt event
 Period_CNT = Positive_CNT + Negative_CNT
 Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1/(Period_CNT * Sample rate(sec))
 Signal_Duty = (Positive_CNT / Period_CNT) * 100
+Check whether the input PWM signal is high state(short) or zeor state(open)
+if(PWM signal ==high state) output PWM signal duty = 100%
+elseif(PWM signal ==Low stat) output PWM signal duty = 0%
+Check the frequency error of input PWM signals
+if(the frequency of input PWM signals == error) output PWM signal duty = 0%
 
 ### Research and Solution #3
 Built know-how in developing software dimming control function.
