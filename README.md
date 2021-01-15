@@ -56,11 +56,46 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 u32Rest indicates the remainter after division. The remainter will be added in the next loop. The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
 
-In these filter algorithms, a user can increase and decreases the intensity of the combined filter by changing the **DENOMINATOR** value in IIR and **LOGIC__nenKALMAN_R_CONST**, **LOGIC__nenKALMAN_Q_CONST**, **LOGIC__nenKALMAN_I_CONST** in Kalman Filter. When applying this combination filter algorithm, the noise of the original touch signal is going to be alleviated. However, the entire response time of the filtered touch signal (ADC) is slowed. This is a side effect of filter algorithms. But I overcome this side effect by applying 'PreEmphasis' algorithm.
+In these filter algorithms, a user can increase and decreases the intensity of the combined filter by changing the **DENOMINATOR** value in IIR and **LOGIC__nenKALMAN_R_CONST**, **LOGIC__nenKALMAN_Q_CONST**, **LOGIC__nenKALMAN_I_CONST** in Kalman Filter. When applying this combination filter algorithm, the noise of the original touch signal is going to be alleviated. However, the entire response time of the filtered touch signal (ADC) is slowed. A user is going to feel that the sensitivity and response of this touch system is poor. This is a side effect of filter algorithms. But this side effect can be solved by applying 'PreEmphasis' algorithm.
 
-To implement PreEmphasis algorithm, you first need to define 3 region(Noise Region, Signal Rise, Valide Signal) by monitoring the fluctuation of the touch signal. And the, set a hysterisys range of three region as shown in **Fig.3**. 
+To implement 'PreEmphasis' algorithm, you first need to define 3 region(Noise Region, Signal Rise, Valide Signal) by monitoring the fluctuation of the touch signal. And then, set a hysterisys range of three region as shown in **Fig.3**. 
 
 <p align="center">
 <img src="./Img/RJ_PreEmpha.jpg"><br>
 <strong>Fig.2) Hysterisys Table</strong>
 <p>
+
+By inputting the touch sensitivity value as the value of the X-axis and utilizing an interpolation algorithm, you can find a state of three regions (0 or 1 or 2). Now, let's assign 'Gain factors' to each region as shown below pseudocode.
+
+>if(state == 0)//Noise State<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G_factor=Const_X;<br>
+&nbsp;&nbsp;&nbsp;}<br>
+else if(state == 1)//Signal Rise State<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G_factor=Const_Y;<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;else//Valid Signal State<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G_factor=Const_Z;<br> 
+&nbsp;&nbsp;&nbsp;}<br>
+
+'Const_X', 'Const_Y', 'Const_Z' are constant value in C programming. You can define these values by monitoring increase and decrease patterns. However, I recommend defining these constant values based on the size of the sensitivity value. For example, if the sensitivity value is stored in int_16 variable, 
+```sh
+$ Const_X = (inputed sensitivity value) / 32767;<br>
+$ Const_Y = {[(inputed sensitivity value) / 3276] * [(inputed sensitivity value) / 3276)]} + 1;<br>
+$ Const_Z = (inputed sensitivity value) / 3276 + 1;<br>
+``` 
+
+You can also customize the amount of sloops of the purple line in **fig.1)**  by adjusting these gain factors to specific values. I recommend tunning these values by storing them in EEPROM of a microprocessor, performing functional safety test in a laboratory with temperature chamber and electrical equipments.
+
+
+
+
+
+
+
+
+
+
+
