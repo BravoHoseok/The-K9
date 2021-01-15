@@ -90,14 +90,14 @@ $ Const_Z = (inputed sensitivity value) / 3276 + 1;
 You can also customize the amount of sloops of the purple line in **fig.1)**  by adjusting these gain factors to specific values. Also, the sensitivity will increase because of the gain foctors. I recommend tunning these values by storing them in EEPROM of a microprocessor, performing functional safety test in a laboratory with temperature chamber and electrical equipments.
 
 <p align="center">
-<img src="./Img/RJ_Ref1.jpg"><br>
+<img src="./Img/RJ_Ref1.JPG"><br>
 <strong>Fig.3) ADC value and Reference Value 1</strong>
 <p>
 
 Fianlly, the last stage of this combination algorithm is implementing 'algoritm tracking the touch sensitivity value rapidly'. In the world of analog signal, the ADC value will change incessantly according to temperature range. It is the property of a microprocessor. As shown Fig.3), if we set a fixed threshold(black line) about the chaning ADC value to confirm whether an object is touched or not, it is going to make malfunctions in high temperature. To prevent this situation, we set reference value that tracks the ADC value periodically(1 or 2 sec or etc..) during no touch state. In here, a 'delta value' is defined as (ADC value) - (Reference value). By defining a delta value like this, we can check the sensitivity value of the touch sensor regardless of temperature range regularly. 
 
 <p align="center">
-<img src="./Img/RJ_Ref2.jpg"><br>
+<img src="./Img/RJ_Ref2.JPG"><br>
 <strong>Fig.4) ADC value and Reference Value 2</strong>
 <p>
 
