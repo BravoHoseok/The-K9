@@ -161,16 +161,16 @@ To control illumination LEDs independently and reduce the cost of a product, we 
 
 **Fig.8)** shows how to calculate the frequency and duty value of a PWM signal by employing Timer and Interrupt. The interrupt signal will be made every rising and falling event, while the timer register value accumulates. Below simple pseudocode describes the method of gauging the frequency and duty values.
 
-> Positive_CNT = CNT1 @ falling edge interrupt event
-Negative_CNT = CNT2 @ rising edeg interrupt event
-Period_CNT = Positive_CNT + Negative_CNT
-Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1/(Period_CNT * Sample rate(sec))
-Signal_Duty = (Positive_CNT / Period_CNT) * 100
-Check whether the input PWM signal is high state(short) or zeor state(open)
-if(PWM signal ==high state) output PWM signal duty = 100%
-elseif(PWM signal ==Low stat) output PWM signal duty = 0%
-Check the frequency error of input PWM signals
-if(the frequency of input PWM signals == error) output PWM signal duty = 0%
+> Positive_CNT = CNT1 @ falling edge interrupt event<br>
+Negative_CNT = CNT2 @ rising edeg interrupt event<br>
+Period_CNT = Positive_CNT + Negative_CNT<br>
+Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1/(Period_CNT * Sample rate(sec))<br>
+Signal_Duty = (Positive_CNT / Period_CNT) * 100<br>
+Check whether the input PWM signal is high state(short) or zeor state(open)<br>
+if(PWM signal ==high state) output PWM signal duty = 100%<br>
+elseif(PWM signal ==Low stat) output PWM signal duty = 0%<br>
+Check the frequency error of input PWM signals<br>
+if(the frequency of input PWM signals == error) output PWM signal duty = 0%<br>
 
 ### Research and Solution #3
 Built know-how in developing software dimming control function.
