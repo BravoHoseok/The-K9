@@ -111,4 +111,27 @@ Fianlly, the last stage of this combination algorithm is implementing 'algoritm 
 ### Result #1
 Improved the noise-immunity, the response time, and the sensitivity by 200%, by 40%, and by 30% respectively
 
+---
 
+### Challenge #2 - Creating software update system for a secondary microprocessor in a complete car
+As two microprocessors (16-bit and 8-bit) are applied in our product, I decided to provide the software update function of the secondary microprocessor in complete car in order to perform projects efficiently in terms on time and costs.
+
+### Research and Solution #2
+**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor
+**(Step 2)** Created FBL (Flash Boot Loader) of the target microprocessor
+**(Step 3)** Implemented the gateway software modules (CAN-I2C) to transfer update data from the main microprocessor to the target microprocessor
+**(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation
+**(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them
+**(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN
+
+<p align="center">
+<img src="./Img/RJ_Update.jpg"><br>
+<strong>Fig.6) the block diagram of the update system</strong>
+<p>
+
+**Fig.6)** shows the entire block diagram of the update system applied in this project. Due the short period of this project, I have to implement the update system quickly. Thus, my solution was merging a touch application code to an update file of a panel program, since works transferring only touch application program to the target microprocessor required a lot of development time.
+
+I merged the touch application program into the unused ROM area of the main microprocessor of the panel. Fortunately, since the panel program occupied small Rom area, I could the unused Rom area for the touch application program. I consolidated two Hex files (Panel Application program, Touch Application program) to one update Hex file by developing a script tool that converts two hex files to one proper update format. After updating the panel program, the touch program update will start with a key combination of the panel. As soon as beginning the update sequence, the GateWay module will read the ROM section of the touch program and transfer the update data to the target microprocessor through I2C.
+
+### Result #2
+Saved the time and costs spent on the software update from 15 min per one product to 1 min per oneproduct, from $22 per one product to $1.5 per one product respectively
