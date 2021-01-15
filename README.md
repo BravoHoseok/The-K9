@@ -138,3 +138,35 @@ Saved the time and costs spent on the software update from 15 min per one produc
 
 ---
 
+### Challenge #3 - Implementing a software dimming control
+To control illumination LEDs independently and reduce the cost of a product, we applied software dimming control in our product instead of illumination controlled by electrical wires. When implementing this function, the tolerance of analog signals is very important, for unstable frequency signals bring about malfunction for recognizing the frequency of duty of the analog signals. I utilized 'Timer' and 'PWM' function already embedded in a microprocessor (Renesas) in order to develop software dimming control function.
+
+### Research and Solution #3
+**(Step 1)** Designed the concept of the software dimming algorithm<br>
+**(Step 2)** Devised functions that calculates the frequency and duty value of PWM signals<br>
+**(Step 3)** Implemented software dimming algorithm that increases and decreases illumination of the LEDs linearly based on the calculated duty and frequency, when detecting the proximity of an object<br>
+**(Step 4)** Programmed all these functions<br>
+
+<p align="center">
+<img src="./Img/RJ_SWDim.jpg"><br>
+<strong>Fig.7) input PWM signal and Timer register value</strong>
+<p>
+
+Fig.7) shows the entire block diagram of software dimming control algorithm. 
+
+<p align="center">
+<img src="./Img/RJ_Tmr.jpg"><br>
+<strong>Fig.8) input PWM signal and Timer register value</strong>
+<p>
+
+Fig.8) shows how to calculate the frequency and duty value of a PWM signal by employing Timer and Interrupt. The interrupt signal will be made every rising and falling event, while the timer register value accumulates. Below simple pseudocode describes the method of gauging the frequency and duty values.
+
+> Positive_CNT = CNT1 @ falling edge interrupt event
+Negative_CNT = CNT2 @ rising edeg interrupt event
+Period_CNT = Positive_CNT + Negative_CNT
+Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1/(Period_CNT * Sample rate(sec))
+Signal_Duty = (Positive_CNT / Period_CNT) * 100
+
+### Research and Solution #3
+Built know-how in developing software dimming control function.
+___
