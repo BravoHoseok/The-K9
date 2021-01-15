@@ -95,7 +95,7 @@ You can also customize the amount of sloops of the purple line in **fig.1)**  by
 <p>
 
 <p align="center">
-<img src="./Img/RJ_Ref3.JPG"><br>
+<img src="./Img/RJ_Ref3.jpg"><br>
 <strong>Fig.4) Delta Value</strong>
 <p>
 
