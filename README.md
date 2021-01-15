@@ -82,9 +82,9 @@ else if(state == 1)//Signal Rise State<br>
 
 'Const_X', 'Const_Y', 'Const_Z' are constant value in C programming. You can define these values by monitoring increase and decrease patterns. However, I recommend defining these constant values based on the size of the sensitivity value. For example, if the sensitivity value is stored in int_16 variable, 
 ```sh
-$ Const_X = (inputed sensitivity value) / 32767;<br>
-$ Const_Y = {[(inputed sensitivity value) / 3276] * [(inputed sensitivity value) / 3276)]} + 1;<br>
-$ Const_Z = (inputed sensitivity value) / 3276 + 1;<br>
+$ Const_X = (inputed sensitivity value) / 32767;
+$ Const_Y = {[(inputed sensitivity value) / 3276] * [(inputed sensitivity value) / 3276)]} + 1;
+$ Const_Z = (inputed sensitivity value) / 3276 + 1;
 ``` 
 
 You can also customize the amount of sloops of the purple line in **fig.1)**  by adjusting these gain factors to specific values. I recommend tunning these values by storing them in EEPROM of a microprocessor, performing functional safety test in a laboratory with temperature chamber and electrical equipments.
