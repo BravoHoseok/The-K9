@@ -117,12 +117,12 @@ Improved the noise-immunity, the response time, and the sensitivity by 200%, by 
 As two microprocessors (16-bit and 8-bit) are applied in our product, I decided to provide the software update function of the secondary microprocessor in complete car in order to perform projects efficiently in terms on time and costs.
 
 ### Research and Solution #2
-**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor
+**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor<br>
 **(Step 2)** Created FBL (Flash Boot Loader) of the target microprocessor
-**(Step 3)** Implemented the gateway software modules (CAN-I2C) to transfer update data from the main microprocessor to the target microprocessor
-**(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation
-**(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them
-**(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN
+**(Step 3)** Implemented the gateway software modules (CAN-I2C) to transfer update data from the main microprocessor to the target microprocessor<br>
+**(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation<br>
+**(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them<br>
+**(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN<br>
 
 <p align="center">
 <img src="./Img/RJ_Update.jpg"><br>
@@ -135,3 +135,6 @@ I merged the touch application program into the unused ROM area of the main micr
 
 ### Result #2
 Saved the time and costs spent on the software update from 15 min per one product to 1 min per oneproduct, from $22 per one product to $1.5 per one product respectively
+
+---
+
