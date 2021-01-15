@@ -102,13 +102,3 @@ Fianlly, the last stage of this combination algorithm is implementing 'algoritm 
 <p>
 
 **Fig.4)** shows the variance of the ADC value of a touch sensor according to temperature and humidity. We assume that the variance of the ADC value is getting more and more big according to temperature range, and the reference value tracks the ADC value in a fixed value (2 value / 1 sec). And then, the difference between the ADC value and the reference value is going to be getting big more and more, ultimately surpass a threshold value and causing malfunctions such as erroneously recognized object touch. Thus, whether how properly the reference value tracks the ADC value or not determines the performance of a touch system. To implement this tracking algorithm, I used the IIR_FILTER algorithm above mentioned, and designed an algorithm that changes DENOMINATOR constant value according to sloop rate of the ADC value during no touch state. This fast tracking algorithm provided more reliable functional safety function of the touch system.
-
-
-
-
-
-
-
-
-
-
