@@ -141,7 +141,7 @@ Saved the time and costs spent on the software update from 15 min per one produc
 ### Challenge #3 - Implementing a software dimming control
 To control illumination LEDs independently and reduce the cost of our product, we applied software dimming control to our product instead of illumination controlled by electrical wires. When implementing this function, the tolerance of analog signals is very important, for unstable frequency signals bring about malfunction for recognizing the frequency of duty of the analog signals. I utilized 'Timer' and 'PWM' function already embedded in the microprocessor in order to develop software dimming control function.
 
-### Research and Solution #3
+### Approach and Solution #3
 **(Step 1)** Designed the concept of the software dimming algorithm<br>
 **(Step 2)** Devised functions that calculates the frequency and duty value of PWM signals<br>
 **(Step 3)** Implemented software dimming algorithm that increases and decreases the illumination brightness of the LEDs linearly based on the calculated duty and frequency, when detecting the proximity of an object<br>
