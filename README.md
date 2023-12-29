@@ -43,7 +43,7 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 //Global Variables storing old and result value
 uint32_t u32Old = 0;
-uint32+t u32Rest = 0;_
+uint32_t u32Rest = 0;
 
 void IIR_FILTER(Xtype* prox)
 {
