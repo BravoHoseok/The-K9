@@ -38,21 +38,26 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 **Fig.2)** shows how the touch signal(ADC) changes after applying filter and PreEmphasis algorithm. If the amount of fluctuation of a noise exceeds the range (Threshold On ~ Threhosld Off), the touch system is going to bring about malfunction. In order to reduce the noise fluctuation, I implemented the combination of IIR and Kalman filter.
 ```c
->void IIR_FILTER(Xtype* prox)<br>
-{<br>
-    //Calculation<br>
-    //New = ((N-1)*Old + New)/N<br>
-&nbsp;&nbsp;&nbsp;uint32_t u32CalTemp;<br>
-&nbsp;&nbsp;&nbsp;u32CalTemp = u32Old * DENOMINATOR;//DENOMINATOR=8(changable)<br>
-&nbsp;&nbsp;&nbsp;u32CalTemp -= u32Old;<br>
-&nbsp;&nbsp;&nbsp;u32CalTemp += u32Rest;<br>
-&nbsp;&nbsp;&nbsp;u32CalTemp += (uint32_t)Xtype->PresentADCValue;<br>
-&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;u32FilteredVal = u32CalTemp / DENOMINATOR;<br>
-&nbsp;&nbsp;&nbsp;u32Rest = u32CalTemp % DENOMINATOR;<br>
-&nbsp;&nbsp;&nbsp;Xtype->PresentADCValue = u32FilteredVal;<br>
-&nbsp;&nbsp;&nbsp;u32Old = u32FilteredVal;<br>
-}<br>
+//Calculation
+//New = ((N-1)*Old + New)/N
+
+//Global Variables storing old and result value
+uint32_t u32Old = 0;
+uint32+t u32Rest = 0;
+
+void IIR_FILTER(Xtype* prox)
+{
+    uint32_t u32CalTemp;
+    u32CalTemp = u32Old * DENOMINATOR; //DENOMINATOR=8 (changable)
+    u32CalTemp -= u32Old;
+    u32CalTemp += u32Rest;
+    u32CalTemp += (uint32_t)Xtype->PresentADCValue;
+    
+    u32FilteredVal = u32CalTemp / DENOMINATOR;
+    u32Rest = u32CalTemp % DENOMINATOR;
+    Xtype->PresentADCValue = u32FilteredVal;
+    u32Old = u32FilteredVal;
+}
 ```
 u32Rest indicates the remainter after division. The remainter will be added in the next loop. The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
 
