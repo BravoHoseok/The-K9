@@ -87,10 +87,10 @@ else//Valid Signal State
 ```
 
 'Const_X', 'Const_Y', 'Const_Z' are constant in C programming. You can define these values by monitoring the signal patterns. However, I recommend defining these constant values based on the size of the sensitivity value. For example, if the sensitivity value is stored in int_16 variable, 
-```sh
-$ Const_X = (inputed sensitivity value) / 32767;
-$ Const_Y = {[(inputed sensitivity value) / 32767] * [(inputed sensitivity value) / 32767)]} + 1;
-$ Const_Z = (inputed sensitivity value) / 32767 + 1;
+```c
+Const_X = (inputed sensitivity value) / 32767;
+Const_Y = {[(inputed sensitivity value) / 32767] * [(inputed sensitivity value) / 32767)]} + 1;
+Const_Z = (inputed sensitivity value) / 32767 + 1;
 ``` 
 
 You can also customize the amount of sloops of the purple line in **fig.1)**  by adjusting these gain factors to a specific values. Also, the sensitivity will increase because of the gain foctors. I recommend tunning these values by storing them in EEPROM of a microprocessor, performing functional safety test in a laboratory with temperature chamber and electrical equipments.
@@ -170,7 +170,7 @@ To control illumination LEDs independently and reduce the cost of our product, w
 Positive_CNT = CNT1 //falling edge interrupt event
 Negative_CNT = CNT2 //rising edeg interrupt event
 Period_CNT = Positive_CNT + Negative_CNT
-Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1/(Period_CNT * Sample rate(sec))
+Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1//(Period_CNT * Sample rate(sec))
 Signal_Duty = (Positive_CNT / Period_CNT) * 100
 
 //Check whether the input PWM signal is high state(short) or zeor state(open)
