@@ -43,7 +43,7 @@ When implementing a proximity function with a touch system, there were a lot of 
 
 //Global Variables storing old and result value
 uint32_t u32Old = 0;
-uint32+t u32Rest = 0;
+uint32+t u32Rest = 0;_
 
 void IIR_FILTER(Xtype* prox)
 {
@@ -71,19 +71,20 @@ To implement 'PreEmphasis' algorithm, we first need to define 3 domain (Noise Re
 <p>
 
 By putting the touch sensitivity value on the X-axis and utilizing the interpolation algorithm, we can find a state (0 or 1 or 2) of the current touch signal on the three regions. Now, let's assign 'Gain factors' to each region as shown pseudocode below.
-
->if(state == 0)//Noise State<br>
-&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G_factor=Const_X;<br>
-&nbsp;&nbsp;&nbsp;}<br>
-else if(state == 1)//Signal Rise State<br>
-&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G_factor=Const_Y;<br>
-&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;else//Valid Signal State<br>
-&nbsp;&nbsp;&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G_factor=Const_Z;<br> 
-&nbsp;&nbsp;&nbsp;}<br>
+```c
+>if(state == 0)//Noise State
+{
+    G_factor=Const_X;
+}
+else if(state == 1)//Signal Rise State
+{
+    G_factor=Const_Y;
+}
+else//Valid Signal State
+{
+    G_factor=Const_Z;
+}
+```
 
 'Const_X', 'Const_Y', 'Const_Z' are constant in C programming. You can define these values by monitoring the signal patterns. However, I recommend defining these constant values based on the size of the sensitivity value. For example, if the sensitivity value is stored in int_16 variable, 
 ```sh
