@@ -170,7 +170,7 @@ To control illumination LEDs independently and reduce the cost of our product, w
 Positive_CNT = CNT1 //falling edge interrupt event
 Negative_CNT = CNT2 //rising edeg interrupt event
 Period_CNT = Positive_CNT + Negative_CNT
-Signal_Freq = Sample Rate(Frequency) / Period_CNT = 1//(Period_CNT * Sample rate(sec))
+Signal_Freq = 1 / (Period_CNT * Sampling rate(sec))
 Signal_Duty = (Positive_CNT / Period_CNT) * 100
 
 //Check whether the input PWM signal is high state(short) or zeor state(open)
