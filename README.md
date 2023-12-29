@@ -36,8 +36,8 @@ When implementing a proximity function with a touch system, there were a lot of 
 <strong>Fig.2) Touch signal(ADC) behavior according to algorithms</strong>
 <p>
 
-**Fig.2)** shows how the touch signal(ADC) changes after applying filter and PreEmphasis algorithm. If the amount of fluctuation of a noise exceeds the range (Threshold On ~ Threhosld Off), the touch system is going to bring about several malfunctions. In order to reduce the amount of fluctuation of the noise, I implemented the combination of IIR and Kalman filter with C language.
-
+**Fig.2)** shows how the touch signal(ADC) changes after applying filter and PreEmphasis algorithm. If the amount of fluctuation of a noise exceeds the range (Threshold On ~ Threhosld Off), the touch system is going to bring about malfunction. In order to reduce the noise fluctuation, I implemented the combination of IIR and Kalman filter.
+```c
 >void IIR_FILTER(Xtype* prox)<br>
 {<br>
     //Calculation<br>
@@ -53,7 +53,7 @@ When implementing a proximity function with a touch system, there were a lot of 
 &nbsp;&nbsp;&nbsp;Xtype->PresentADCValue = u32FilteredVal;<br>
 &nbsp;&nbsp;&nbsp;u32Old = u32FilteredVal;<br>
 }<br>
-
+```
 u32Rest indicates the remainter after division. The remainter will be added in the next loop. The source code of Kalman FIlter for ADC can be found here: https://github.com/BravoHoseok/The-K9/blob/master/src/LOGIC_Kalman.c
 
 In these filter algorithms, we can increase and decreases the intensity of the combined filter by changing the **DENOMINATOR** value in IIR and **LOGIC__nenKALMAN_R_CONST**, **LOGIC__nenKALMAN_Q_CONST**, **LOGIC__nenKALMAN_I_CONST** in Kalman Filter. When applying this combination filter algorithm, the noise of the original ADC signal will be alleviated. However, the delayed response time caused by the filtered touch signal (ADC) will become intensified. The a user iwill feel that the sensitivity and response of this touch system is poor. This is the side effect of filter algorithms. But this problem can be solved by applying 'PreEmphasis' algorithm.
